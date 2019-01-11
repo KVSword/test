@@ -38,6 +38,7 @@ def database():
             dropped += 1
         i += 1
     i = 0
+    time = time / 60
     a.append(lists)
     a.append(plan)
     a.append(watching)
