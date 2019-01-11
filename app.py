@@ -12,7 +12,7 @@ app = Flask(__name__, static_url_path='')
 
 
 def database():
-    with urllib.request.urlopen("http://shikimori.org/api/users/326282/anime_rates?limit=100000") as url:
+    with urllib.request.urlopen("http://shikimori.org/api/users/326282/anime_rates?limit=15") as url:
         data = json.loads(url.read().decode())
         # print(data)
     # print(data[350])
@@ -30,15 +30,14 @@ def database():
             plan += 1
         if data[i]['status'] == "watching":
             watching += 1
-            time += data[i]['episodes'] * 24
+            time += data[i]['episodes'] * 24 / 60
         if data[i]['status'] == "completed":
             completed += 1
-            time += data[i]['episodes'] * 24
+            time += data[i]['episodes'] * 24 / 60
         if data[i]['status'] == "dropped":
             dropped += 1
         i += 1
     i = 0
-    time = time / 60
     a.append(lists)
     a.append(plan)
     a.append(watching)
